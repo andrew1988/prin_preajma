@@ -2,7 +2,7 @@
 <div><img src="assets/images/background.jpg" alt="" class="img-responsive"/></div>
 <div class="search-home">
     <div class="container">
-        <a href="/admin_users">Administreaza utilizatori</a> | <a href="/admin_categorii">Administreaza categorii</a> |
+        <a href="<?php echo base_url("admin_users"); ?>">Administreaza utilizatori</a> | <a href="<?php echo base_url("admin_categorii"); ?>">Administreaza categorii</a> |
     </div>
 </div>
 <div class="button_cat_home">
