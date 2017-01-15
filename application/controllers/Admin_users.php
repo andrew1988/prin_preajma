@@ -5,17 +5,20 @@ class Admin_users extends CI_Controller {
 
 	public function index()
 	{        
-                $users = $this->admin_usersModel->get_all_users();
-                $config['base_url'] = site_url("admin_users/index");
+                
+                $config['base_url'] = base_url("admin_users/index");
                 $config['first_link'] = 'Prima';
                 $config['last_link']  = 'Ultima';
                 $config['per_page'] = 2;
                 $config['num_links'] = 5;
-                $config['total_rows'] = count($users);
+                $config['uri_segment'] = 4;
+              
+                $users = $this->admin_usersModel->get_all_users($config['per_page']);
+                $config['total_rows'] = $this->admin_usersModel->get_users_number();
                 $this->pagination->initialize($config);
-                $data['users'] = $users;  
+                $data['users'] = $users;
                 $data['link']  = $this->pagination->create_links();
-               //print("<pre>"); print_r($data); print("</pre>");
+                //print("<pre>"); print_r(count($users)); print("</pre>");
                 
                 $this->load->view('inc/head');
 		$this->load->view('loggedViews/inc/header'); //apeleaza proprietatea din MY_controller unde stabileste ce header incarca.

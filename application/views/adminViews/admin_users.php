@@ -14,8 +14,8 @@
                         . '</div>';
                         
                     }
-                    var_dump($link);
-                    echo "aici ar trebui sa am paginatie". $link;
+                  
+                   echo $link;
                     
                 ?>
     </div>  
