@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-4">
                     <div class="logo">
-                        <a href="<?php echo base_url() ?>"><img class="logo" src="assets/images/logo.png"/></a>
+                        <a href="<?php echo base_url() ?>"><img class="logo" src="<?php echo base_url("assets/images/logo.png"); ?>"/></a>
                     </div>
                 </div>
                 <div class="col-md-8 col-sm-8">

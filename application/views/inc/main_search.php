@@ -1,5 +1,5 @@
 
-<div><img src="assets/images/background.jpg" alt="" class="img-responsive"/></div>
+<div><img src="<?php echo base_url("assets/images/background.jpg"); ?>" alt="" class="img-responsive"/></div>
 <div class="search-home">
     <div class="container">
         <form  method="post" action="search.php?go"  id="searchform"> 
