@@ -35,6 +35,13 @@ class Admin_users extends CI_Controller {
                 $userDetails = $this->admin_usersModel->get_user_details($userId);
                 
                 $data['user_details'] = $userDetails;
+                //$data[''] = 
+                
+                $username      = $this->input->post('usr_username');
+                $email         = $this->input->post('usr_email');
+                $cont_premium  = $this->input->post('usr_username');
+                echo $username;
+                        
             
                 $this->load->view('inc/head');
 		$this->load->view('loggedViews/inc/header'); 
