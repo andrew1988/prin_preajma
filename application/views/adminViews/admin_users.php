@@ -10,7 +10,8 @@
                     foreach($users as $user){
                         //print("<pre>"); print_r($user); print("</pre>");
                         echo '<div>'
-                        . 'Nume User:'.$user['usr_username'].'| E-mail:'.$user['usr_email'] .'[<a href="'.base_url("admin_edit_user").'/'.$user['usr_id'].'">Edit</a> | <a href="#">Delete</a>]'
+                        . 'Nume User:'.$user['usr_username'].'| E-mail:'.$user['usr_email'] .'[<a href="'.base_url("admin_edit_user").'/'.$user['usr_id'].'">Edit</a> |'
+                        . ' <a href="'.base_url("admin_edit_user").'/'.$user['usr_id'].'/delete">Delete</a>]'
                         . '</div>';
                         
                     }
