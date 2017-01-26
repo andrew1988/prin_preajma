@@ -62,4 +62,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['admin_home']  = 'admin_home';
 $route['admin_users'] = 'admin_users';
 $route['admin_edit_user/(:num)'] = 'admin_users/admin_editUser/$1';
-$route['admin_edit_user/(:num)/(:any)'] = 'admin_users/index/$1/$1';
+$route['admin_categorii']        = 'admin_categorii';
+$route['admin_edit_categorii/(:num)'] = 'admin_categorii/admin_editCategorii/$1';

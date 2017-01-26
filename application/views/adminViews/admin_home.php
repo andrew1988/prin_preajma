@@ -1,5 +1,5 @@
 <div class="middle">
-    <p>Featured Places</p>
+    <p>Pagina de administratie</p>
     <div class="separator"></div>
 </div>
 <div class="container">

@@ -1,5 +1,5 @@
 <div class="middle">
-    <p>Featured Places</p>
+    <p>Administrare utilizatori</p>
     <div class="separator"></div>
 </div>
 <div class="container">
@@ -9,10 +9,12 @@
                 <?php 
                     foreach($users as $user){
                         //print("<pre>"); print_r($user); print("</pre>");
-                        echo '<div>'
-                        . 'Nume User:'.$user['usr_username'].'| E-mail:'.$user['usr_email'] .'[<a href="'.base_url("admin_edit_user").'/'.$user['usr_id'].'">Edit</a> |'
-                        . ' <a href="'.base_url("admin_edit_user").'/'.$user['usr_id'].'/delete">Delete</a>]'
-                        . '</div>';
+                        echo '<table cellpadding="0" cellspacing="0" border="0" align="center" width="80%">'
+                        . '<tr><td>Nume User:'.$user['usr_username'].'| E-mail:'.$user['usr_email'] .'</td><td><a href="'.base_url("admin_edit_user").'/'.$user['usr_id'].'">Edit</a> |</td>'
+                        . '<td><form action="'.base_url("admin_users").'" method="post">'
+                        . '<input type="hidden" name="usr_id" value="'.$user['usr_id'].'">'
+                        . '<input type="hidden" name="action" value="delete"><input type="submit" value="Delete"/></form></td></tr>'
+                        . '</table>';
                         
                     }
                   
