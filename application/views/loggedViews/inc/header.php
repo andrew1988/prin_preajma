@@ -12,13 +12,13 @@
                             <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a>
                         </div>
                         <div class="menu-top">
-                            <a href="<?php echo base_url(); ?>">Home</a> | <a href="contact.php">Contact</a></div>
+                            <a href="<?php echo base_url(); ?>">Home</a> | <a href="<?php echo base_url('contact'); ?>">Contact</a></div>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <a class="btn btn-primary add pull-right" href="locatie">Adauga locatie</a>
+                        <a class="btn btn-primary add pull-right" href="<?php echo base_url('locatie') ?>">Adauga locatie</a>
                         <ul class="nav nav-pills pull-right" style="margin-right: 10px;">
 
-                            <p style="margin-top: 10px;">Salut <a href="profile.php?id="><?php echo $this->session->userdata('usr_username') ?></a>  <?php echo ($this->session->userdata('usr_rank')== 1 ? '| <a href="admin_home">Adminn</a>':'') ?>  | <a href="<?php echo base_url("/logout") ?>">Logout</a> </p>
+                            <p style="margin-top: 10px;">Salut <a href="profile.php?id="><?php echo $this->session->userdata('usr_username') ?></a>  <?php echo ($this->session->userdata('usr_rank')== 1 ? '| <a href="'.base_url('admin_home').'">Admin</a>':'') ?>  | <a href="<?php echo base_url("/logout") ?>">Logout</a> </p>
                            
                             <!--<li class="btn btn-primary add"></li>-->
                         </ul>

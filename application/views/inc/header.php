@@ -12,10 +12,10 @@
                             <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a>
                         </div>
                         <div class="menu-top">
-                            <a href="<?php echo base_url(); ?>">Home</a> | <a href="contact.php">Contact</a></div>
+                            <a href="<?php echo base_url(); ?>">Home</a> | <a href="<?php echo base_url('contact.php') ?>">Contact</a></div>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <a class="btn btn-primary add pull-right" href="locatie">Adauga locatie</a>
+                        <a class="btn btn-primary add pull-right" href="<?php echo base_url('locatie') ?>">Adauga locatie</a>
                         <ul class="nav nav-pills pull-right" style="margin-right: 10px;">
                            
                                 <li role="presentation" class="dropdown">

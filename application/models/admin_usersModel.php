@@ -1,4 +1,4 @@
-.<?php
+<?php
 class admin_usersModel extends CI_Model{
       public function get_all_users($pagination_limit,$limit){
            $query = $this->db->get('usr_users',$pagination_limit,$limit);
@@ -19,19 +19,16 @@ class admin_usersModel extends CI_Model{
            return $user_details;
       }
       
-      public function update_user_details($data){
-          
-          print("<pre>"); print_r($data); print("</pre>");
+      public function update_user_details($data){  
           $user_id = $data['usr_id'];
-
           unset($data['usr_id']);
           $this->db->set($data);
           $this->db->where('usr_id',$user_id);
           $this->db->update('usr_users');
       }
-      public function delete_user($data){
-          extract($data);
+      public function delete_user($usr_id){
+          //extract($data);
           $this->db->where('usr_id',$usr_id);
-          $this->db->delete('users');
+          $this->db->delete('usr_users');
       }
 }
