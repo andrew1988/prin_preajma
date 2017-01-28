@@ -1,8 +1,3 @@
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap.js"></script>
-<script type="text/javascript" src="assets/js/code.js"></script>
-<script type="text/javascript" src="assets/js/preloader.js"></script>
-<script type="text/javascript" src="assets/js/select2.js"></script>
 <script>
     function do_submit() {
         document.forms['myform'].submit();

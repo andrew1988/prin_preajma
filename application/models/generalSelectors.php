@@ -9,4 +9,9 @@ class generalSelectors extends CI_Model{
         }
         return $county_list;
     }
+    
+    public function getCityList($cou_id){
+        $query = $this->db->get_where('ors_orase',array('cou_id'=>$cou_id));
+        return $query->result_array(); 
+    }
 }

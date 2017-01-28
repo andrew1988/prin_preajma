@@ -7,7 +7,7 @@
                 <input class="form-control" type="text" name="name" placeholder="Cauta..."> 
             </div>
             <div class="col-md-2" >
-                <select class="judet" name="judet">
+                <select class="judet" id="judet" name="judet">
                      <option value="0">Alege Judetul</option>
                     <?php foreach ($this->generalCountyList as $judete) { ?>
                         <option value="<?php echo $judete['county_id']; ?>"><?php echo $judete['long']; ?></option>

@@ -64,3 +64,7 @@ $route['admin_users'] = 'admin_users';
 $route['admin_edit_user/(:num)'] = 'admin_users/admin_editUser/$1';
 $route['admin_categorii']        = 'admin_categorii';
 $route['admin_edit_categorii/(:num)'] = 'admin_categorii/admin_editCategorii/$1';
+
+//====================================ajax routes===============================
+
+$route['ajax_controller/(:num)'] = 'ajax_controller/index/$1';
