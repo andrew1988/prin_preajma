@@ -67,4 +67,4 @@ $route['admin_edit_categorii/(:num)'] = 'admin_categorii/admin_editCategorii/$1'
 
 //====================================ajax routes===============================
 
-$route['ajax_controller/(:num)'] = 'ajax_controller/index/$1';
+$route['ajax_controller'] = 'ajax_controller/index';

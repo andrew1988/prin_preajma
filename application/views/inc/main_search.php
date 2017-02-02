@@ -15,10 +15,8 @@
                 </select>
             </div>
             <div class="col-md-2" >
-                <select class="oras" name="city">
-                    <?php foreach ($local as $locale) { ?>
-                        <option><?php echo $locale->name; ?></option>
-                    <?php } ?>
+                <select class="oras" id ="cities" name="city">
+                    <option>Alege Orasul</option>
                 </select>
             </div>
             <div class="col-md-4">
