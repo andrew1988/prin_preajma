@@ -9,9 +9,12 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/bootstrap.css"); ?>"/>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/font-awesome.min.css"); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/select2.css"); ?>">
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css" />
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
         <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
-        <!-- <script type="text/javascript" src="<?php //echo base_url("assets/js/code.js");  ?>"></script> -->
+        <!-- <script type="text/javascript" src="<?php //echo base_url("assets/js/code.js");     ?>"></script> -->
         <script type="text/javascript" src="<?php echo base_url("assets/js/preloader.js"); ?>"></script> 
         <script type="text/javascript" src="<?php echo base_url("assets/js/select2.js"); ?>"></script>
         <script type="text/javascript">
@@ -27,12 +30,39 @@
                         data: {cou_county: county},
                         /*async: false,*/
                         success: function (response) {
-                            
+
                             $.each(response, function (i, value) {
-                                option += '<option value="'+ value.ors_id + '">' + value.ors_denumire + '</option>';
+                                option += '<option value="' + value.ors_id + '">' + value.ors_denumire + '</option>';
+                            });
+                            $('#cities').html(option).trigger('change');
+                            option = '';
+                        },
+                        error: function (response) {
+                            console.log("there's an error" + response.responseText);
+                        }
+                    });
+                });
+
+                $(function () {
+                    $("#tabs").tabs();
+                });
+                
+            });
+            function populateLocationnCities(county) {
+                    
+                    /*alert(county);*/
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: base_url,
+                        data: {cou_county: county},
+                        /*async: false,*/
+                        success: function (response) {
+                            $.each(response, function (i, value) {
+                                option += '<option value="' + value.ors_id + '">' + value.ors_denumire + '</option>';
                             });
                             //$('#cities').remove();
-                            $('#cities').html(option).trigger('change');
+                            $('#location_city').html(option).trigger('change');
                             option = '';
                             /*console.log(response);*/
                         },
@@ -40,13 +70,7 @@
                             console.log("there's an error" + response.responseText);
                         }
                     });
-                });
-            });
-
-            function populateCities() {
-
             }
-
         </script>
     </head>
     <body>
