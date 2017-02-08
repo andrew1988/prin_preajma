@@ -4,14 +4,18 @@ class MY_Controller extends CI_Controller{
     public $generalCountyList;
     public $isLoggedFlag;
     public $generalViewsList;
+    public $listaCategorii;
+    
     
  function __construct(){
         parent::__construct();
         $this->load->model("generalSelectors");
+        $this->load->model("categoriiModel");
         $this->generalCountyList = $this->generalSelectors->getCountyList();
         $this->checkLog();
         $this->generalViews();
-    
+        $this->listCategorii = $this->listaCategorii();
+       
     }
     
     public function checkLog(){
@@ -34,16 +38,19 @@ class MY_Controller extends CI_Controller{
      * 1 stare pentru situatia in care nu esti logat.
      */
     public function generalViews(){
-        if($this->isLoggedFlag == 1){
+        if($this->isLoggedFlag == 1){//daca logat
             $this->generalViewsList['header'] = 'loggedViews/inc/header'; //headerul cu userul atunci cand este logat
             $this->generalViewsList['locatie'] = 'loggedViews/locatie';
             return $this->generalViewsList;
         }
-        else{
+        else{//daca nu logat
             $this->generalViewsList['header'] = 'inc/header';
             $this->generalViewsList['locatie'] = 'locatie';
             return $this->generalViewsList;
         }
                 
+    }
+    private function listaCategorii(){
+       return $this->categoriiModel->selectCategorii();
     }
 }

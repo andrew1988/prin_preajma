@@ -63,7 +63,7 @@
                                 </a>
                             </div>
                             <div class="col-md-8">
-                                <h4 class="title"><a href="details.php?id=">Un nume</a></h4>
+                                <h4 class="title"><a href="details.php?id="><?php echo $locatie['loc_pseudonim'] ?></a></h4>
                                 <h5 class="category">Restaurante</h5>
                                 <p>O descriere ... <a href="details.php?id=">Citeste mai mult</a></p>
                                 <p><i class="fa fa-map-marker" aria-hidden="true"></i>  <a href="https://www.google.ro/maps/place/" target="_blank">Map</a></p>
@@ -74,8 +74,8 @@
                         </div>
                     </div>
                 <?php } ?>
-              
             </div>
+           <?php echo $link;?>
         </div>
 <!--
         <div class="col-md-2 col-sm-0 col-xs-0">

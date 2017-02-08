@@ -23,8 +23,8 @@
                                         CONT <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="login">Login</a></li>
-                                        <li><a href="register">Inregistrare</a></li>
+                                        <li><a href="<?php echo base_url('login') ?>">Login</a></li>
+                                        <li><a href="<?php echo base_url('register') ?>">Inregistrare</a></li>
                                     </ul>
                                 </li>
                           

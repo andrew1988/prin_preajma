@@ -54,6 +54,7 @@ $route['default_controller'] = 'home';
 $route['locatie'] = 'locatie';
 $route['register'] = 'register';
 $route['logout']  = 'logout';
+$route['categorie/(:any)/(:num)/(:any)']  = 'locationListingsCategorii/index/$1/$1/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

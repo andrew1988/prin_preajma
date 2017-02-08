@@ -15,7 +15,7 @@ class Admin_users extends CI_Controller {
                 $users = $this->admin_usersModel->get_all_users($config['per_page'],$this->uri->segment(3));
                 $config['total_rows'] = $this->admin_usersModel->get_users_number();
                 $this->pagination->initialize($config);
-                //}finalizare preluare paginatie cu informatii simple despre user.
+               
                 $data['users'] = $users;
                 $data['link']  = $this->pagination->create_links();
                 //print("<pre>"); print_r(count($users)); print("</pre>");
