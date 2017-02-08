@@ -1,7 +1,7 @@
 <div class="container">
     <div class="wrapper">
         <br>
-        <form method="post" action="" enctype="multipart/form-data">
+        <form method="post" action="<?php echo base_url('locatie') ?>" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">

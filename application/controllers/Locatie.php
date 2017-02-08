@@ -8,29 +8,60 @@ class Locatie extends MY_Controller {
 
         $nume_unitate = $this->input->post('name');
         $descriere = $this->input->post('description');
-        //$imagine_loc = $this->input->post(image);//asta cred ca se ia altfel dar momentan lasa-l asa.
+        $imagine_loc = $this->input->post('image'); //asta cred ca se ia altfel dar momentan lasa-l asa.
         $judet = $this->input->post('judet');
         $oras = $this->input->post('city');
         $adresa = $this->input->post('locatie');
-        
-        
+
+
         $now = date("Y-m-d H:i:s");
-        $loc_data = ['usr_id'=>$this->session->userdata('usr_username'),
-                       'cat_id'=>1,//$this->input->post('cat_id'),
-                       'loc_pseudonim'=>$nume_unitate,
-                       'loc_nume_firma'=>'0',
-                       'loc_adresa_locatie'=>$adresa,
-                       'cou_id'=>$judet,
-                       'ors_id'=>$oras,
-                       'loc_contact'=>'0',
-                       'loc_poza_profil'=>'0',
-                       'loc_promovat'=>'0',
-                       'loc_despre'=>$descriere,
-                       'loc_data_adaugarii'=>$now
-            
-            ];
+        $loc_data = ['usr_id' => $this->session->userdata('usr_username'),
+            'cat_id' => 1, //$this->input->post('cat_id'),
+            'loc_pseudonim' => $nume_unitate,
+            'loc_nume_firma' => '0',
+            'loc_adresa_locatie' => $adresa,
+            'cou_id' => $judet,
+            'ors_id' => $oras,
+            'loc_contact' => '0',
+            'loc_poza_profil' => '0',
+            'loc_promovat' => '0',
+            'loc_despre' => $descriere,
+            'loc_data_adaugarii' => $now
+        ];
+        echo $imagine_loc;
+        /*if(isset($loc_data) && !is_null($loc_data) && !empty($loc_data)){
+            $this->add_location($loc_data);
+        }*/
+        
+        print("<pre>"); print_r($this->do_upload()); print("</pre>");
+        
+        $this->load->view('inc/head');
+        $this->load->view($this->generalViewsList['header']);
+        $this->load->view('inc/main_search');
+        $this->load->view($this->generalViewsList['locatie']); //asta e singurrul care se schmiba in functie de controllerul accesat.
+        $this->load->view('inc/footer.php');
+    }
 
+    public function do_upload() {
 
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 100;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('image')) {
+            $error = array('error' => $this->upload->display_errors());
+            return $error;
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            return $data;
+        }
+    }
+
+    public function add_location($loc_data) {
         $lv_start = $this->input->post('lv_start');
         $lv_end = $this->input->post('lv_end');
         $sd_start = $this->input->post('sd_start');
@@ -167,12 +198,10 @@ class Locatie extends MY_Controller {
                     'prg_closed_all_day' => '1',
                 ]
             ];
-
-            
         } else {
-            
+
             //tip orar complex
-            
+
             $programInput = [
                 'luni_start' => [
                     'loc_id' => '',
@@ -287,18 +316,12 @@ class Locatie extends MY_Controller {
                     'prg_closed_all_day' => '1',
                 ]
             ];
-
         }
-        $this->LocationsModel->addLocation($loc_data,$programInput);
-        $this->load->view('inc/head');
-        $this->load->view($this->generalViewsList['header']);
-        $this->load->view('inc/main_search');
-        $this->load->view($this->generalViewsList['locatie']); //asta e singurrul care se schmiba in functie de controllerul accesat.
-        $this->load->view('inc/footer.php');
-    }
-
-    public function addLocation() {
-        
+        if (isset($imagine_loc) && !empty($imagine_loc)) {
+            echo $imagine_loc;
+            //$this->do_upload();
+        }
+        $this->LocationsModel->addLocation($loc_data, $programInput);
     }
 
 }
