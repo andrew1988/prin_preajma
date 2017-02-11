@@ -6,7 +6,6 @@ class MY_Controller extends CI_Controller{
     public $generalViewsList;
     public $listaCategorii;
     
-    
  function __construct(){
         parent::__construct();
         $this->load->model("generalSelectors");
@@ -15,7 +14,6 @@ class MY_Controller extends CI_Controller{
         $this->checkLog();
         $this->generalViews();
         $this->listCategorii = $this->listaCategorii();
-       
     }
     
     public function checkLog(){

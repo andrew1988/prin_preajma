@@ -5,15 +5,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Locatie extends MY_Controller {
 
     public function index() {
-
+        //get and set location info. from form
+        $isFileName = $name_file = $_FILES['image']['name'];
+        if (isset($isFileName) && !empty($isFileName)) {
+            $uploadedFileData = $this->do_upload();
+            $imageName = $uploadedFileData['upload_data']['file_name'];
+        } else {
+            $imageName = 0;
+        }
+        $upload_data = $this->do_upload();
+        echo $name = $upload_data['upload_data']['file_name'];
         $nume_unitate = $this->input->post('name');
         $descriere = $this->input->post('description');
-        $imagine_loc = $this->input->post('image'); //asta cred ca se ia altfel dar momentan lasa-l asa.
         $judet = $this->input->post('judet');
         $oras = $this->input->post('city');
         $adresa = $this->input->post('locatie');
-
-
         $now = date("Y-m-d H:i:s");
         $loc_data = ['usr_id' => $this->session->userdata('usr_username'),
             'cat_id' => 1, //$this->input->post('cat_id'),
@@ -23,18 +29,14 @@ class Locatie extends MY_Controller {
             'cou_id' => $judet,
             'ors_id' => $oras,
             'loc_contact' => '0',
-            'loc_poza_profil' => '0',
+            'loc_poza_locatie' => 'uploads/'.$imageName,
             'loc_promovat' => '0',
             'loc_despre' => $descriere,
             'loc_data_adaugarii' => $now
         ];
-        echo $imagine_loc;
-        /*if(isset($loc_data) && !is_null($loc_data) && !empty($loc_data)){
+        if (isset($loc_data) && !is_null($loc_data) && !empty($loc_data)) {
             $this->add_location($loc_data);
-        }*/
-        
-        print("<pre>"); print_r($this->do_upload()); print("</pre>");
-        
+        }
         $this->load->view('inc/head');
         $this->load->view($this->generalViewsList['header']);
         $this->load->view('inc/main_search');
@@ -46,9 +48,11 @@ class Locatie extends MY_Controller {
 
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
+        $config['remove_spaces'] = 'TRUE';
         $config['max_size'] = 100;
         $config['max_width'] = 1024;
         $config['max_height'] = 768;
+        $config['file_name'] = time();
 
         $this->load->library('upload', $config);
 
@@ -316,10 +320,6 @@ class Locatie extends MY_Controller {
                     'prg_closed_all_day' => '1',
                 ]
             ];
-        }
-        if (isset($imagine_loc) && !empty($imagine_loc)) {
-            echo $imagine_loc;
-            //$this->do_upload();
         }
         $this->LocationsModel->addLocation($loc_data, $programInput);
     }

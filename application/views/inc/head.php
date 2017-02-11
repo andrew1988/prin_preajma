@@ -12,13 +12,13 @@
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css" />
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+        <script type="text/javascript">var base_url = '<?php echo base_url("ajax_controller") ?>';</script>
         <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
-        <!-- <script type="text/javascript" src="<?php //echo base_url("assets/js/code.js");     ?>"></script> -->
+        <script type="text/javascript" src="<?php echo base_url("assets/js/code.js");     ?>"></script> 
         <script type="text/javascript" src="<?php echo base_url("assets/js/preloader.js"); ?>"></script> 
         <script type="text/javascript" src="<?php echo base_url("assets/js/select2.js"); ?>"></script>
         <script type="text/javascript">
-            var base_url = '<?php echo base_url("ajax_controller/index") ?>';
+            
             var option = '';
             $(document).ready(function () {
                 $('#judet').change(function () {
@@ -26,7 +26,7 @@
                     $.ajax({
                         type: 'POST',
                         dataType: "json",
-                        url: base_url,
+                        url: base_url+'/index',
                         data: {cou_county: county},
                         /*async: false,*/
                         success: function (response) {

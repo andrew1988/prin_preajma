@@ -1,3 +1,31 @@
+function selectForm(selectedLocation){
+   /* $(document).ready(function () {*/
+                //$('#selectCatSelect').change(function () {
+                    //var selectedLocation = $("select option:selected").val();
+                    alert(selectedLocation);
+                    $.ajax({
+                        type: 'POST',
+                        dataType: "json",
+                        url: base_url+'/getCategoryType',
+                        data: {cat_id: selectedLocation},
+                        /*async: false,*/
+                        success: function (response) {
+                            alert("succes");
+                           /* $.each(response, function (i, value) {
+                                option += '<option value="' + value.ors_id + '">' + value.ors_denumire + '</option>';
+                            });
+                            $('#cities').html(option).trigger('change');
+                            option = '';*/
+                        },
+                        error: function (response) {
+                            console.log("there's an error" + response.responseText);
+                        }
+                    });
+               // });
+/*});*/
+}
+
+/*
 $(document).ready(function(){
 	//atunci cand dom ul este pregatit populam primul select cu toate judetele care le avem in tabelul tbl_judete		  
   $.ajax({
@@ -14,11 +42,8 @@ $(document).ready(function(){
     
   });  
  });
- 
  // $(function() este echivalent cu $(document).ready(function() , un mod de a scrie mai putin cod
 $(function(){
-		
-	
 	//Atunci cand utilizatorul alege un judet  Ajax ul trimite o cerere catre  script ul getData
 	// cu avand ca paramentru id ul judetului selectat care este luat din valoarea optiunii judetului selectat
 	// Scriptul va returna optiunele cu toate orasele din respectivul judet ales si va goli select ul cu strazi	  
@@ -35,8 +60,6 @@ $(function(){
 	     }    
 	  });  	   
     });
-    
-    
     //Atunci cand utilizatorul alege un oras Ajax ul trimite o cerere catre  script ul getData
 	// cu avand ca paramentru id ul orasului selectat iar scrip ul va popula selectul cu strazile respectivului oras	
     $("select#oras").change(function(){     
@@ -52,18 +75,15 @@ $(function(){
 	  });
   	   
     });
-    
     //Atunci cand utilizatorul modifica si strada vom afisa in div ul cu id ul rezultat Id urile judetului , orasului si respectiv strazii
     //alese de catre acesta 
     $("select#strada").change(function(){    	
     	     var rezultat = 'Id Judet = '+$('#judet').val()+'<br/> Id Oras ='+$('#oras').val()+'<br/> Id Strada = '+$('#strada').val();	       
 	       $('#rezultat').html(rezultat);	           
 	  });
-  	   
-    
-    
+
  });
 
  
- 
+ */
  

@@ -4,7 +4,14 @@
         <form method="post" action="<?php echo base_url('locatie') ?>" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-3"></div>
+
                 <div class="col-md-6">
+                    <select name="selectLocation" id="selectCatSelect" onchange="selectForm(this.value)">
+                        <option>Alege Categoria</option>
+                        <?php foreach ($this->listCategorii as $categorie_select) { ?>
+                            <option value="<?php echo $categorie_select['cat_id']; ?>"><?php echo $categorie_select['cat_nume']; ?></option>
+                        <?php } ?>
+                    </select>
                     <input class="form-control" type="text" name="name" placeholder="Nume restaurant">
                     <textarea class="form-control" placeholder="Descrierea ofertei" name="description"></textarea>
                     Select Image:<input type="file" name="image">
