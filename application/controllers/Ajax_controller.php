@@ -9,8 +9,15 @@ class Ajax_controller extends MY_Controller {
               $encoded = json_encode($cities);
               print_r($encoded);
 	}
+        /*
+         * functia cauta tipul categoriei pentru a fi returnat in 
+         * formularul de adaugare locatii/servicii
+         * in functie de rezultat afiseaza sau nu partea de program
+         * daca returneaza 0 afiseaza daca nu, afiseaza formular simplu
+         */
         public function getCategoryType(){
-            $var = "ajunge in ajax_controller";
-            print_r(json_encode($var));
+            $categoryId = $this->input->post('cat_id');
+            $getType = $this->categoriiModel->getCatTypeModel($categoryId);
+            print_r(json_encode($getType));
         }
 }

@@ -1,40 +1,44 @@
-<?php
+ <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Locatie extends MY_Controller {
-
+    
+    private $catType;//tipul categoriei ce va face diferenta intre formulare.
+    
     public function index() {
         //get and set location info. from form
-        $isFileName = $name_file = $_FILES['image']['name'];
-        if (isset($isFileName) && !empty($isFileName)) {
-            $uploadedFileData = $this->do_upload();
-            $imageName = $uploadedFileData['upload_data']['file_name'];
-        } else {
-            $imageName = 0;
-        }
-        $upload_data = $this->do_upload();
-        echo $name = $upload_data['upload_data']['file_name'];
-        $nume_unitate = $this->input->post('name');
-        $descriere = $this->input->post('description');
-        $judet = $this->input->post('judet');
-        $oras = $this->input->post('city');
-        $adresa = $this->input->post('locatie');
-        $now = date("Y-m-d H:i:s");
-        $loc_data = ['usr_id' => $this->session->userdata('usr_username'),
-            'cat_id' => 1, //$this->input->post('cat_id'),
-            'loc_pseudonim' => $nume_unitate,
-            'loc_nume_firma' => '0',
-            'loc_adresa_locatie' => $adresa,
-            'cou_id' => $judet,
-            'ors_id' => $oras,
-            'loc_contact' => '0',
-            'loc_poza_locatie' => 'uploads/'.$imageName,
-            'loc_promovat' => '0',
-            'loc_despre' => $descriere,
-            'loc_data_adaugarii' => $now
-        ];
-        if (isset($loc_data) && !is_null($loc_data) && !empty($loc_data)) {
+        if (isset($_POST) && !is_null($_POST) && !empty($_POST)) {
+            $isFileName = $_FILES['image']['name'];
+            if (isset($isFileName) && !empty($isFileName)) {
+                $uploadedFileData = $this->do_upload();
+                $imageName = $uploadedFileData['upload_data']['file_name'];
+            } else {
+                $imageName = 0;
+            }
+            $nume_unitate = $this->input->post('name');
+            $categorie = $this->input->post('selectCategory');//id-ul categoriei.
+            $cat_type = $this->categoriiModel->getCatTypeModel($categorie); //tipul anuntului este aacelasi cu tipul categoriei.
+            $descriere = $this->input->post('description');
+            $judet = $this->input->post('judet');
+            $oras = $this->input->post('city');
+            $contact_data = $this->input->post('contact_data');
+            $adresa = $this->input->post('locatie');
+            $now = date("Y-m-d H:i:s");
+            $loc_data = ['usr_id' => $this->session->userdata('usr_id'),
+                'cat_id' => $categorie,
+                'loc_pseudonim' => $nume_unitate,
+                'loc_nume_firma' => '0',
+                'loc_adresa_locatie' => $adresa,
+                'cou_id' => $judet,
+                'ors_id' => $oras,
+                'loc_contact' => $contact_data,
+                'loc_poza_locatie' => 'uploads/'.$imageName,
+                'loc_promovat' => '0',
+                'loc_despre' => $descriere,
+                'loc_tip_anunt'=>$cat_type[0]['cat_type'],
+                'loc_data_adaugarii' => $now
+            ];
             $this->add_location($loc_data);
         }
         $this->load->view('inc/head');
