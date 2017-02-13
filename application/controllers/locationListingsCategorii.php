@@ -13,7 +13,7 @@ class locationListingsCategorii extends MY_Controller {
         $config['last_link'] = 'Ultima';
         $config['per_page'] = 4;
         $config['num_links'] = 10;
-        $config['first_url'] = '1';
+        $config['first_url'] = '0';
         $config['uri_segment'] = 4;
         $locatii = $this->listingCategoriiModel->showOnCat($config['per_page'],$this->uri->segment(4),$cat_id);
         $this->pagination->initialize($config);
