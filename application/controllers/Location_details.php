@@ -29,12 +29,11 @@ class Location_details extends MY_Controller {
         //end generare link pentru view-uri
         //preia componentele detaliilor: commentarii,rating,program
         $comments = $this->getComments($loc_id);
-        $rating   = $this->getRating($loc_id);
-        $program['program']  = $this->genereazaProgram($loc_id,$flat['loc_prg_type']);
+        $rating = $this->getRating($loc_id);
+        $program['program'] = $this->genereazaProgram($loc_id, $flat['loc_prg_type']);
         //end preluare componente.
-        
-        $toView = array_merge($flat, $comments,$rating,$program);
-        print("<pre>"); print_r($toView); print("</pre>"); //debug
+
+        $toView = array_merge($flat, $comments, $rating, $program);
         //structura marcata pentru codecleanup(o fac cu ruta separata ca la setRating
         if (!empty($this->input->post('comments'))) {
             $this->addComment($loc_id);
@@ -108,7 +107,7 @@ class Location_details extends MY_Controller {
             if ($checkRatingExisntance == 0) {
                 //daca nuu are voturi fac insert nou in tabele usv_user_voting si 
                 //rat_rating
-                echo $this->RatingsModel->addVote($location_id, $rating);
+                $this->RatingsModel->addVote($location_id, $rating);
                 $this->UserVotingModel->addUserVote($location_id);
             } else {
                 //daca are voturi apeles functia de update informatii
@@ -145,17 +144,17 @@ class Location_details extends MY_Controller {
          * inregistrarea cu default la 0.
          */
         $existaVotare = $this->RatingsModel->checkVoteExistance($location_id);
-        if($existaVotare != 0){
+        if ($existaVotare != 0) {
             $flat = call_user_func_array('array_merge', $getAverage);
         }
-        if(!array_key_exists('rat_nr_voturi',$flat)){
-            $flat['rat_nr_voturi']    = 0;
+        if (!array_key_exists('rat_nr_voturi', $flat)) {
+            $flat['rat_nr_voturi'] = 0;
             $flat['rat_medie_valori'] = 0;
         }
-        $flat['vote']  = $ableToVote;
-        return $flat;       
-        
+        $flat['vote'] = $ableToVote;
+        return $flat;
     }
+
     /*
      * genereaza programul locatiilor
      * @pparam loc_id  = id-ul locatiei
@@ -164,23 +163,31 @@ class Location_details extends MY_Controller {
      *  1 program complex
      *  2 non stop
      */
-    public function genereazaProgram($loc_id,$prg_type){
-        
-        if(($prg_type == 0)||($prg_type == 1)){
+
+    public function genereazaProgram($loc_id, $prg_type) {
+
+        if (($prg_type == 0) || ($prg_type == 1)) {
             $generateProgramArray = array();
             $program = $this->ProgramModel->getFullHours($loc_id);
-            $program['non_stop'] = '0';
-            //aici a ramas. trebuie generat un array cu programul pe care
-            //il trimit in view.
-            foreach($program as $prg){
-                $generateProgramArray = [];
+
+            foreach ($program as $prg) {
+
+                if ((!array_key_exists($prg['prg_day'], $generateProgramArray))) {
+                    $generateProgramArray[$prg['prg_day']] = [
+                        'ziua' => $prg['prg_day'],
+                        'deschide_la' => $prg['prg_hour'],
+                    ];
+                } else {
+                    $generateProgramArray[$prg['prg_day']]['inchide_la'] = $prg['prg_hour'];
+                }
+                //print("<pre>"); print_r($prg); print("</pre>");
             }
-            
-        }elseif($prg_type == 2){
+            $program['non_stop'] = '0';
+            return $generateProgramArray;
+        } elseif ($prg_type == 2) {
             $program['non_stop'] = '1';
+            return $program;
         }
-        //print("<pre>"); print_r($program); print("</pre>");
-        return $program;
     }
 
 }

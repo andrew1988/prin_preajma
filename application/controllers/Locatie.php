@@ -93,7 +93,7 @@ class Locatie extends MY_Controller {
             $vineri_start = $lv_start;
             $vineri_end = $lv_end;
             $sambata_start = $sd_start;
-            $sambata_end = '';
+            $sambata_end = $sd_end;
             $duminica_start = $sd_start;
             $duminica_end = $sd_end;
             //prg_closed_all_day 0 pentru deschis - 1 pentru inchis

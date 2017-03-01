@@ -81,10 +81,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">ziua</div>
-        <div class="col-md-3">deschide</div>
-        <div class="col-md-3">inchide</div>
+        <div class="col-md-3">Ziua</div>
+        <div class="col-md-3">Deschide la ora</div>
+        <div class="col-md-3">Inchide la ora</div>
     </div>
+    <?php foreach($program as $ziua){ ?>
+    <div class="row">
+        <div class="col-md-3"><?php echo $ziua['ziua'] ?></div>
+        <div class="col-md-3"><?php echo $ziua['deschide_la'] ?></div>
+        <div class="col-md-3"><?php echo $ziua['inchide_la'] ?></div>
+    </div>
+    <?php } ?>
 </div>
 
 <!-- end new design -->
