@@ -1,5 +1,5 @@
 <?php
-class admin_usersModel extends CI_Model{
+class Admin_usersModel extends CI_Model{
       public function get_all_users($pagination_limit,$limit){
            $query = $this->db->get('usr_users',$pagination_limit,$limit);
            $users = $query->result_array();

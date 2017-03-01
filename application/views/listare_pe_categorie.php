@@ -57,19 +57,19 @@
                     <div class="col-md-12 col-sm-6 col-xs-12">
                         <div class="item_home">
                             <div class="col-md-4">
-                                <a href="details.php?id=" class="thumbnail">
+                                <a href="<?php echo base_url('details/'.$locatie['loc_pseudonim'].'/'.$locatie['loc_id'].'/0'); ?>" class="thumbnail">
                                     <!--<div class="promo_label"></div>-->
-                                    <img src="timthumb.php?src=uploads/imagine&w=550&h=500" alt="...">
+                                    <img src="<?php echo base_url($locatie['loc_poza_locatie']) ?>" width="550" height="500" alt="...">
                                 </a>
                             </div>
                             <div class="col-md-8">
-                                <h4 class="title"><a href="details.php?id="><?php echo $locatie['loc_pseudonim'] ?></a></h4>
-                                <h5 class="category">Restaurante</h5>
-                                <p>O descriere ... <a href="details.php?id=">Citeste mai mult</a></p>
-                                <p><i class="fa fa-map-marker" aria-hidden="true"></i>  <a href="https://www.google.ro/maps/place/" target="_blank">Map</a></p>
-                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> L-V: 9:00 AM - 18:00PM</p>
-                                <p>Oferta:</p>
-                                <p>text oferta</p>
+                                <h4 class="title"><a href="<?php echo base_url('details/'.$locatie['loc_pseudonim'].'/'.$locatie['loc_id'].'/0'); ?>"><?php echo $locatie['loc_pseudonim']; ?></a></h4>
+                                <h5 class="category"><?php echo $locatie['cat_nume'] ?></h5>
+                                <p><?php echo substr($locatie['loc_despre'],0,255); ?> <a href="<?php echo base_url('details/'.$locatie['loc_pseudonim'].'/'.$locatie['loc_id'].'/0'); ?>">Citeste mai mult</a></p>
+                                <p><i class="fa fa-map-marker" aria-hidden="true"></i>  <?php echo $locatie['harta']; ?><!-- <a href="https://maps.googleapis.com/maps/api/geocode/json?address=Mioveni+Arges+Romania+Petre+Zugravu&key=AIzaSyDRAjR96bBaznm4cWJGqnq8QHgtOo8Ix0U" target="_blank">Map</a></p> -->
+                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $locatie['orar'] ?></p>
+                                <!--<p>Oferta:</p>
+                                <p>text oferta</p>-->
                             </div>
                         </div>
                     </div>

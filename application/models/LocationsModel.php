@@ -9,9 +9,6 @@ class LocationsModel extends CI_Model{
                 $day['loc_id'] = $loc_id[0]['loc_id'];
                 $this->db->insert('prg_program',$day);               
             }
-            $prg_array['loc_id'] = $loc_id[0]['loc_id'];
-            
-            
-            
+            $prg_array['loc_id'] = $loc_id[0]['loc_id'];   
         }
 }

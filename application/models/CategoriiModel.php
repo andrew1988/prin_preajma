@@ -1,6 +1,6 @@
 <?php
 
-class categoriiModel extends CI_Model {
+class CategoriiModel extends CI_Model {
    /*
     * selecteaza categoriile pentru afisare in site.
     */

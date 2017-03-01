@@ -12,8 +12,8 @@ class Admin_users extends CI_Controller {
                 $config['per_page'] = 10;
                 $config['num_links'] = 10;
                 $config['uri_segment'] = 3;
-                $users = $this->admin_usersModel->get_all_users($config['per_page'],$this->uri->segment(3));
-                $config['total_rows'] = $this->admin_usersModel->get_users_number();
+                $users = $this->Admin_usersModel->get_all_users($config['per_page'],$this->uri->segment(3));
+                $config['total_rows'] = $this->Admin_usersModel->get_users_number();
                 $this->pagination->initialize($config);
                
                 $data['users'] = $users;
@@ -34,7 +34,7 @@ class Admin_users extends CI_Controller {
 	}
         public function admin_editUser(){
                 $userId = $this->uri->segment(2);
-                $userDetails = $this->admin_usersModel->get_user_details($userId);
+                $userDetails = $this->Admin_usersModel->get_user_details($userId);
                 $data['user_details'] = $userDetails;
                 $this->form_validation->set_rules('usr_username','Utilizator','required|min_length[6]');
                 $this->form_validation->set_rules('usr_email','E-mail','required|min_length[6]|valid_email');
@@ -57,8 +57,8 @@ class Admin_users extends CI_Controller {
                                  'usr_rank'=>$usr_rank,
                                  'usr_persoana_juridica'=>$usr_persoana_juriddica
                          ];
-                     $this->admin_usersModel->update_user_details($updated);
-                     $userDetails = $this->admin_usersModel->get_user_details($userId);
+                     $this->Admin_usersModel->update_user_details($updated);
+                     $userDetails = $this->Admin_usersModel->get_user_details($userId);
                      $data['user_details'] = $userDetails;
 
                 }         
@@ -69,6 +69,6 @@ class Admin_users extends CI_Controller {
                 $this->load->view('inc/footer.php');
         }
         public function delete_user($user_id){
-                $this->admin_usersModel->delete_user($user_id);
+                $this->Admin_usersModel->delete_user($user_id);
         }
 }

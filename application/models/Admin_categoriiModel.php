@@ -1,5 +1,5 @@
 <?php
-class admin_categoriiModel extends CI_Model{
+class Admin_categoriiModel extends CI_Model{
      public function adaugaCategorie($data){
          $this->db->insert('cat_categorii',$data);
      }

@@ -18,7 +18,7 @@ class Locatie extends MY_Controller {
             }
             $nume_unitate = $this->input->post('name');
             $categorie = $this->input->post('selectCategory');//id-ul categoriei.
-            $cat_type = $this->categoriiModel->getCatTypeModel($categorie); //tipul anuntului este aacelasi cu tipul categoriei.
+            $cat_type = $this->CategoriiModel->getCatTypeModel($categorie); //tipul anuntului este aacelasi cu tipul categoriei.
             $descriere = $this->input->post('description');
             $judet = $this->input->post('judet');
             $oras = $this->input->post('city');
@@ -36,8 +36,13 @@ class Locatie extends MY_Controller {
                 'loc_poza_locatie' => 'uploads/'.$imageName,
                 'loc_promovat' => '0',
                 'loc_despre' => $descriere,
+                'loc_latitudine'=>'0',
+                'loc_longitudine'=>'0',
+                'loc_prg_type'=>'0',
                 'loc_tip_anunt'=>$cat_type[0]['cat_type'],
-                'loc_data_adaugarii' => $now
+                'loc_data_adaugarii' => $now,
+                'loc_longitudine'=>($this->input->post('Longitude') ? $this->input->post('Longitude') : '0'),
+                'loc_latitudine'=>($this->input->post('Latitude') ? $this->input->post('Latitude') : '0'),
             ];
             $this->add_location($loc_data);
         }
@@ -74,7 +79,7 @@ class Locatie extends MY_Controller {
         $lv_end = $this->input->post('lv_end');
         $sd_start = $this->input->post('sd_start');
         $sd_end = $this->input->post('sd_end');
-
+        $loc_data['loc_prg_type'] = '0';
         if ((isset($lv_start)) && (isset($lv_end) && (!empty($lv_start)) && (!empty($lv_end)))) {
             //tip orar simplu - folosim: salvam toate zilele in baza de date
             $luni_start = $lv_start;
@@ -99,7 +104,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Luni',
                     'prg_day_short' => 'L',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'luni_end' => [
                     'loc_id' => '',
@@ -107,7 +113,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Luni',
                     'prg_day_short' => 'L',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'marti_start' => [
                     'loc_id' => '',
@@ -115,7 +122,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Marti',
                     'prg_day_short' => 'M',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'marti_end' => [
                     'loc_id' => '',
@@ -123,7 +131,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Marti',
                     'prg_day_short' => 'M',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'miercuri_start' => [
                     'loc_id' => '',
@@ -131,7 +140,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Miercuri',
                     'prg_day_short' => 'M',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'miercuri_end' => [
                     'loc_id' => '',
@@ -139,15 +149,17 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Miercuri',
                     'prg_day_short' => 'M',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'joi_start' => [
                     'loc_id' => '',
                     'prg_hour' => $joi_start,
                     'prg_day' => 'Joi',
-                    'prg_day_short' => 'j',
+                    'prg_day_short' => 'J',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'joi_end' => [
                     'loc_id' => '',
@@ -155,7 +167,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Joi',
                     'prg_day_short' => 'J',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'vineri_start' => [
                     'loc_id' => '',
@@ -163,7 +176,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Vineri',
                     'prg_day_short' => 'V',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'vineri_end' => [
                     'loc_id' => '',
@@ -171,7 +185,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Vineri',
                     'prg_day_short' => 'V',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'sambata_start' => [
                     'loc_id' => '',
@@ -179,7 +194,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Sambata',
                     'prg_day_short' => 'S',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'sambata_end' => [
                     'loc_id' => '',
@@ -187,7 +203,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Sambata',
                     'prg_day_short' => 'S',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'duminica_start' => [
                     'loc_id' => '',
@@ -195,7 +212,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Duminica',
                     'prg_day_short' => 'D',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'duminica_end' => [
                     'loc_id' => '',
@@ -203,13 +221,14 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Duminica',
                     'prg_day_short' => 'D',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'0',
+                    'prg_open_close_hour_type' => '1',
                 ]
             ];
         } else {
 
             //tip orar complex
-
+            $loc_data['loc_prg_type'] = '1';//seteaza tipul programului ca fiind complex
             $programInput = [
                 'luni_start' => [
                     'loc_id' => '',
@@ -217,7 +236,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Luni',
                     'prg_day_short' => 'L',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'luni_end' => [
                     'loc_id' => '',
@@ -225,7 +245,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Luni',
                     'prg_day_short' => 'L',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'marti_start' => [
                     'loc_id' => '',
@@ -233,7 +254,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Marti',
                     'prg_day_short' => 'M',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'marti_end' => [
                     'loc_id' => '',
@@ -241,7 +263,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Marti',
                     'prg_day_short' => 'M',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'miercuri_start' => [
                     'loc_id' => '',
@@ -249,7 +272,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Miercuri',
                     'prg_day_short' => 'M',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'miercuri_end' => [
                     'loc_id' => '',
@@ -257,15 +281,17 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Miercuri',
                     'prg_day_short' => 'M',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'joi_start' => [
                     'loc_id' => '',
                     'prg_hour' => $this->input->post('joi_start'),
                     'prg_day' => 'Joi',
-                    'prg_day_short' => 'j',
+                    'prg_day_short' => 'J',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'joi_end' => [
                     'loc_id' => '',
@@ -273,7 +299,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Joi',
                     'prg_day_short' => 'J',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'vineri_start' => [
                     'loc_id' => '',
@@ -281,7 +308,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Vineri',
                     'prg_day_short' => 'V',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'vineri_end' => [
                     'loc_id' => '',
@@ -289,7 +317,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Vineri',
                     'prg_day_short' => 'V',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'sambata_start' => [
                     'loc_id' => '',
@@ -297,7 +326,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Sambata',
                     'prg_day_short' => 'S',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'sambata_end' => [
                     'loc_id' => '',
@@ -305,7 +335,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Sambata',
                     'prg_day_short' => 'S',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '1',
                 ],
                 'duminica_start' => [
                     'loc_id' => '',
@@ -313,7 +344,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Duminica',
                     'prg_day_short' => 'D',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '0',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '0',
                 ],
                 'duminica_end' => [
                     'loc_id' => '',
@@ -321,7 +353,8 @@ class Locatie extends MY_Controller {
                     'prg_day' => 'Duminica',
                     'prg_day_short' => 'D',
                     'prg_nonstop' => '0',
-                    'prg_closed_all_day' => '1',
+                    'prg_type'=>'1',
+                    'prg_open_close_hour_type' => '1',
                 ]
             ];
         }

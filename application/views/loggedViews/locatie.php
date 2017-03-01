@@ -84,7 +84,9 @@
                     <select class="oras" name="city" id="location_city" >
                         <option>Alege Orasul</option>
                     </select>
-                    <!--<input class="city" type="text" name="city" placeholder="Introduceti localitatea" />-->
+                    <input type="hidden" id="Latitude" name="Latitude" value="">
+                    <input type="hidden" id="Longitude" name="Longitude" value="">
+                     <input type="button" value="Get Location" onclick="getLocationConstant()"/>
                     <p>Adresa:</p>
                     <input class="form-control" type="text" name="locatie" placeholder="Adresa" value=""/>
 

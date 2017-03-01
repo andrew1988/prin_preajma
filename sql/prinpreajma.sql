@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2017 at 12:56 AM
+-- Generation Time: Feb 26, 2017 at 01:49 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -123,15 +123,19 @@ CREATE TABLE `loc_locatii` (
   `loc_id` bigint(20) NOT NULL,
   `usr_id` bigint(20) NOT NULL,
   `cat_id` bigint(20) NOT NULL,
-  `loc_pseudonim` varchar(255) NOT NULL,
+  `loc_pseudonim` varchar(255) NOT NULL COMMENT 'aici se salveaza titlul locatiei sau titlul serviciului atunci cand este serviciu',
   `loc_nume_firma` varchar(255) NOT NULL,
   `loc_adresa_locatie` text NOT NULL,
   `cou_id` int(11) NOT NULL,
   `ors_id` int(11) NOT NULL,
   `loc_contact` text NOT NULL,
-  `loc_despre` text NOT NULL,
-  `loc_poza_profil` text NOT NULL,
+  `loc_despre` text NOT NULL COMMENT 'salvez descrierea serviciului respectiv locatiei',
+  `loc_poza_locatie` text NOT NULL,
   `loc_promovat` int(11) NOT NULL,
+  `loc_longitudine` varchar(255) DEFAULT NULL,
+  `loc_latitudine` varchar(255) DEFAULT NULL,
+  `loc_prg_type` int(11) NOT NULL COMMENT '0 pentru grupat/1 pentru complex(program specificat zilnic)',
+  `loc_tip_anunt` int(11) NOT NULL COMMENT '0 locatie, 1 pentru serviciu',
   `loc_data_adaugarii` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -139,23 +143,13 @@ CREATE TABLE `loc_locatii` (
 -- Dumping data for table `loc_locatii`
 --
 
-INSERT INTO `loc_locatii` (`loc_id`, `usr_id`, `cat_id`, `loc_pseudonim`, `loc_nume_firma`, `loc_adresa_locatie`, `cou_id`, `ors_id`, `loc_contact`, `loc_despre`, `loc_poza_profil`, `loc_promovat`, `loc_data_adaugarii`) VALUES
-(1, 0, 1, '123', '0', 'sadad', 13, 0, '0', '123', '0', 0, '0000-00-00 00:00:00'),
-(2, 0, 1, '123', '0', 'sadad', 13, 0, '0', '123', '0', 0, '0000-00-00 00:00:00'),
-(3, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:38:34'),
-(4, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:41:03'),
-(5, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:41:52'),
-(6, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:42:10'),
-(7, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:42:43'),
-(8, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:43:04'),
-(9, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:43:46'),
-(10, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:44:00'),
-(11, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:44:27'),
-(12, 0, 1, 'lol', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:44:52'),
-(13, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:46:07'),
-(14, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:46:19'),
-(15, 0, 1, 'ads', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:47:37'),
-(16, 0, 1, 'hgjgh', '0', 'o addresa', 15, 96, '0', 'asd', '0', 0, '2017-02-05 01:48:09');
+INSERT INTO `loc_locatii` (`loc_id`, `usr_id`, `cat_id`, `loc_pseudonim`, `loc_nume_firma`, `loc_adresa_locatie`, `cou_id`, `ors_id`, `loc_contact`, `loc_despre`, `loc_poza_locatie`, `loc_promovat`, `loc_longitudine`, `loc_latitudine`, `loc_prg_type`, `loc_tip_anunt`, `loc_data_adaugarii`) VALUES
+(1, 5, 1, 'nume', '0', 'o adresa', 2, 1, 'o oferta plm', 'descriere', 'uploads/0', 0, '0', '0', 0, 0, '2017-02-18 16:59:08'),
+(2, 5, 3, 'prg complex', '0', 'arges, mioveni petre zugravu', 2, 1, 'date de contact', 'descriere pentru program complex', 'uploads/0', 0, '0', '0', 1, 0, '2017-02-18 17:01:37'),
+(3, 5, 2, 'jlkjdf', '0', 'asdasdasd ', 15, 96, 'asdaasda', 'dgdfg', 'uploads/0', 0, '0', '0', 1, 0, '2017-02-19 00:42:53'),
+(4, 5, 2, 'sfsdf', '0', 'ghfghfg', 15, 96, 'fgfgghfgh', 'sdfsdf', 'uploads/0', 0, '0', '0', 0, 0, '2017-02-19 00:53:18'),
+(5, 5, 1, 'dsad', '0', 'asdasdsda', 2, 1, 'adas', 'adsad', 'uploads/0', 0, '24.949716', '44.9620421', 0, 0, '2017-02-22 19:57:38'),
+(6, 5, 7, 'Prestari servicii', '0', 'adresa mea', 10, 62, 'date de contact', 'descriere serviciu', 'uploads/0', 0, '0', '0', 1, 1, '2017-02-22 20:00:40');
 
 -- --------------------------------------------------------
 
@@ -519,20 +513,138 @@ CREATE TABLE `prg_program` (
 --
 
 INSERT INTO `prg_program` (`prg_id`, `loc_id`, `prg_day`, `prg_day_short`, `prg_oc`, `prg_hour`, `prg_nonstop`, `prg_closed_all_day`, `prg_type`, `prg_open_close_hour_type`) VALUES
-(1, 16, 'Luni', 'L', NULL, '13', 0, 0, 0, 0),
-(2, 16, 'Luni', 'L', NULL, '13', 0, 0, 0, 0),
-(3, 16, 'Marti', 'M', NULL, '13', 0, 0, 0, 0),
-(4, 16, 'Marti', 'M', NULL, '13', 0, 0, 0, 0),
-(5, 16, 'Miercuri', 'M', NULL, '13', 0, 0, 0, 0),
-(6, 16, 'Miercuri', 'M', NULL, '13', 0, 0, 0, 0),
-(7, 16, 'Joi', 'j', NULL, '13', 0, 0, 0, 0),
-(8, 16, 'Joi', 'J', NULL, '13', 0, 0, 0, 0),
-(9, 16, 'Vineri', 'V', NULL, '13', 0, 0, 0, 0),
-(10, 16, 'Vineri', 'V', NULL, '13', 0, 0, 0, 0),
-(11, 16, 'Sambata', 'S', NULL, '13', 0, 0, 0, 0),
-(12, 16, 'Sambata', 'S', NULL, '', 0, 0, 0, 0),
-(13, 16, 'Duminica', 'D', NULL, '13', 0, 0, 0, 0),
-(14, 16, 'Duminica', 'D', NULL, '13', 0, 0, 0, 0);
+(1, 1, 'Luni', 'L', NULL, '13', 0, 0, 0, 0),
+(2, 1, 'Luni', 'L', NULL, '13', 0, 0, 0, 1),
+(3, 1, 'Marti', 'M', NULL, '13', 0, 0, 0, 0),
+(4, 1, 'Marti', 'M', NULL, '13', 0, 0, 0, 1),
+(5, 1, 'Miercuri', 'M', NULL, '13', 0, 0, 0, 0),
+(6, 1, 'Miercuri', 'M', NULL, '13', 0, 0, 0, 1),
+(7, 1, 'Joi', 'j', NULL, '13', 0, 0, 0, 0),
+(8, 1, 'Joi', 'J', NULL, '13', 0, 0, 0, 1),
+(9, 1, 'Vineri', 'V', NULL, '13', 0, 0, 0, 0),
+(10, 1, 'Vineri', 'V', NULL, '13', 0, 0, 0, 1),
+(11, 1, 'Sambata', 'S', NULL, '13', 0, 0, 0, 0),
+(12, 1, 'Sambata', 'S', NULL, '13', 0, 0, 0, 1),
+(13, 1, 'Duminica', 'D', NULL, '13', 0, 0, 0, 0),
+(14, 1, 'Duminica', 'D', NULL, '13', 0, 0, 0, 1),
+(17, 2, 'Marti', 'M', NULL, '12', 0, 0, 1, 0),
+(18, 2, 'Marti', 'M', NULL, '13', 0, 0, 1, 1),
+(19, 2, 'Miercuri', 'M', NULL, '12', 0, 0, 1, 0),
+(20, 2, 'Miercuri', 'M', NULL, '13', 0, 0, 1, 1),
+(21, 2, 'Joi', 'j', NULL, '12', 0, 0, 1, 0),
+(22, 2, 'Joi', 'J', NULL, '13', 0, 0, 1, 1),
+(23, 2, 'Vineri', 'V', NULL, '13', 0, 0, 1, 0),
+(24, 2, 'Vineri', 'V', NULL, '14', 0, 0, 1, 1),
+(25, 2, 'Sambata', 'S', NULL, '12', 0, 0, 1, 0),
+(26, 2, 'Sambata', 'S', NULL, ' 13', 0, 0, 1, 1),
+(27, 2, 'Duminica', 'D', NULL, '14', 0, 0, 1, 0),
+(28, 2, 'Duminica', 'D', NULL, '15', 0, 0, 1, 1),
+(29, 3, 'Luni', 'L', NULL, '12', 0, 0, 1, 0),
+(30, 3, 'Luni', 'L', NULL, '13', 0, 0, 1, 1),
+(31, 3, 'Marti', 'M', NULL, '12', 0, 0, 1, 0),
+(32, 3, 'Marti', 'M', NULL, '13', 0, 0, 1, 1),
+(33, 3, 'Miercuri', 'M', NULL, '12', 0, 0, 1, 0),
+(34, 3, 'Miercuri', 'M', NULL, '13', 0, 0, 1, 1),
+(35, 3, 'Joi', 'J', NULL, '12', 0, 0, 1, 0),
+(36, 3, 'Joi', 'J', NULL, '14', 0, 0, 1, 1),
+(37, 3, 'Vineri', 'V', NULL, '12', 0, 0, 1, 0),
+(38, 3, 'Vineri', 'V', NULL, '13', 0, 0, 1, 1),
+(39, 3, 'Sambata', 'S', NULL, '12', 0, 0, 1, 0),
+(40, 3, 'Sambata', 'S', NULL, '13', 0, 0, 1, 1),
+(41, 3, 'Duminica', 'D', NULL, '12', 0, 0, 1, 0),
+(42, 3, 'Duminica', 'D', NULL, '13', 0, 0, 1, 1),
+(43, 4, 'Luni', 'L', NULL, '13', 0, 0, 0, 0),
+(44, 4, 'Luni', 'L', NULL, '14', 0, 0, 0, 1),
+(45, 4, 'Marti', 'M', NULL, '13', 0, 0, 0, 0),
+(46, 4, 'Marti', 'M', NULL, '14', 0, 0, 0, 1),
+(47, 4, 'Miercuri', 'M', NULL, '13', 0, 0, 0, 0),
+(48, 4, 'Miercuri', 'M', NULL, '14', 0, 0, 0, 1),
+(49, 4, 'Joi', 'J', NULL, '13', 0, 0, 0, 0),
+(50, 4, 'Joi', 'J', NULL, '14', 0, 0, 0, 1),
+(51, 4, 'Vineri', 'V', NULL, '13', 0, 0, 0, 0),
+(52, 4, 'Vineri', 'V', NULL, '14', 0, 0, 0, 1),
+(53, 4, 'Sambata', 'S', NULL, '13', 0, 0, 0, 0),
+(54, 4, 'Sambata', 'S', NULL, '', 0, 0, 0, 1),
+(55, 4, 'Duminica', 'D', NULL, '13', 0, 0, 0, 0),
+(56, 4, 'Duminica', 'D', NULL, '14', 0, 0, 0, 1),
+(57, 5, 'Luni', 'L', NULL, '13', 0, 0, 0, 0),
+(58, 5, 'Luni', 'L', NULL, '14', 0, 0, 0, 1),
+(59, 5, 'Marti', 'M', NULL, '13', 0, 0, 0, 0),
+(60, 5, 'Marti', 'M', NULL, '14', 0, 0, 0, 1),
+(61, 5, 'Miercuri', 'M', NULL, '13', 0, 0, 0, 0),
+(62, 5, 'Miercuri', 'M', NULL, '14', 0, 0, 0, 1),
+(63, 5, 'Joi', 'J', NULL, '13', 0, 0, 0, 0),
+(64, 5, 'Joi', 'J', NULL, '14', 0, 0, 0, 1),
+(65, 5, 'Vineri', 'V', NULL, '13', 0, 0, 0, 0),
+(66, 5, 'Vineri', 'V', NULL, '14', 0, 0, 0, 1),
+(67, 5, 'Sambata', 'S', NULL, '13', 0, 0, 0, 0),
+(68, 5, 'Sambata', 'S', NULL, '', 0, 0, 0, 1),
+(69, 5, 'Duminica', 'D', NULL, '13', 0, 0, 0, 0),
+(70, 5, 'Duminica', 'D', NULL, '14', 0, 0, 0, 1),
+(71, 6, 'Luni', 'L', NULL, '', 0, 0, 1, 0),
+(72, 6, 'Luni', 'L', NULL, '', 0, 0, 1, 1),
+(73, 6, 'Marti', 'M', NULL, '', 0, 0, 1, 0),
+(74, 6, 'Marti', 'M', NULL, '', 0, 0, 1, 1),
+(75, 6, 'Miercuri', 'M', NULL, '', 0, 0, 1, 0),
+(76, 6, 'Miercuri', 'M', NULL, '', 0, 0, 1, 1),
+(77, 6, 'Joi', 'J', NULL, '', 0, 0, 1, 0),
+(78, 6, 'Joi', 'J', NULL, '', 0, 0, 1, 1),
+(79, 6, 'Vineri', 'V', NULL, '', 0, 0, 1, 0),
+(80, 6, 'Vineri', 'V', NULL, '', 0, 0, 1, 1),
+(81, 6, 'Sambata', 'S', NULL, '', 0, 0, 1, 0),
+(82, 6, 'Sambata', 'S', NULL, '', 0, 0, 1, 1),
+(83, 6, 'Duminica', 'D', NULL, '', 0, 0, 1, 0),
+(84, 6, 'Duminica', 'D', NULL, '', 0, 0, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rat_rating`
+--
+
+CREATE TABLE `rat_rating` (
+  `rat_id` bigint(20) NOT NULL,
+  `loc_id` bigint(20) NOT NULL,
+  `rat_nr_voturi` int(11) NOT NULL DEFAULT '0',
+  `rat_suma_totala` int(11) NOT NULL COMMENT 'suma totala a voturilor',
+  `rat_medie_valori` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rev_reviews`
+--
+
+CREATE TABLE `rev_reviews` (
+  `rev_id` bigint(20) NOT NULL,
+  `usr_id` bigint(20) NOT NULL,
+  `loc_id` bigint(20) NOT NULL,
+  `rev_comment` text NOT NULL,
+  `rev_data_adaugarii` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `rev_reviews`
+--
+
+INSERT INTO `rev_reviews` (`rev_id`, `usr_id`, `loc_id`, `rev_comment`, `rev_data_adaugarii`) VALUES
+(12, 5, 6, 'asdasd', '2017-02-25 03:29:56'),
+(13, 5, 6, 'asdasd', '2017-02-25 03:30:10'),
+(14, 5, 6, 'asdasd', '2017-02-25 03:49:06'),
+(15, 5, 6, 'asdasd', '2017-02-25 03:49:43'),
+(16, 5, 6, 'asdasd', '2017-02-25 03:50:00'),
+(17, 5, 6, 'asdasd', '2017-02-25 03:59:09'),
+(18, 5, 6, 'asdasd', '2017-02-25 03:59:25'),
+(19, 5, 6, 'asdasd', '2017-02-25 03:59:36'),
+(20, 5, 6, 'asdasd', '2017-02-25 04:01:12'),
+(21, 5, 6, 'asdasd', '2017-02-25 04:02:20'),
+(22, 5, 6, 'asdasd', '2017-02-25 04:02:52'),
+(23, 5, 6, 'asdasd', '2017-02-25 04:03:22'),
+(24, 5, 6, 'asdasd', '2017-02-25 04:04:08'),
+(25, 5, 6, 'dsfsdf', '2017-02-25 04:07:51'),
+(26, 5, 6, 'Comentariu', '2017-02-25 04:08:07'),
+(27, 5, 6, 'asdasd ddsad', '2017-02-25 04:19:22');
 
 -- --------------------------------------------------------
 
@@ -573,6 +685,18 @@ INSERT INTO `usr_users` (`usr_id`, `usr_username`, `usr_email`, `usr_password`, 
 (15, 'andrei9', 'mateikind19@gmail.com', '123456', 0, 0, '2017-02-08 00:00:00', '2017-02-08 00:00:00', 0),
 (16, 'andrei10', 'mateikind20@gmail.com', '123456', 0, 0, '2017-02-08 00:00:00', '2017-02-08 00:00:00', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usv_user_ratings`
+--
+
+CREATE TABLE `usv_user_ratings` (
+  `usv_id` bigint(20) NOT NULL,
+  `usr_id` bigint(20) NOT NULL,
+  `loc_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='cine a votat si cine nu:1vot/locatie/cont';
+
 --
 -- Indexes for dumped tables
 --
@@ -611,10 +735,32 @@ ALTER TABLE `prg_program`
   ADD PRIMARY KEY (`prg_id`);
 
 --
+-- Indexes for table `rat_rating`
+--
+ALTER TABLE `rat_rating`
+  ADD PRIMARY KEY (`rat_id`);
+
+--
+-- Indexes for table `rev_reviews`
+--
+ALTER TABLE `rev_reviews`
+  ADD PRIMARY KEY (`rev_id`),
+  ADD KEY `usr_id` (`usr_id`),
+  ADD KEY `loc_id` (`loc_id`);
+
+--
 -- Indexes for table `usr_users`
 --
 ALTER TABLE `usr_users`
   ADD PRIMARY KEY (`usr_id`);
+
+--
+-- Indexes for table `usv_user_ratings`
+--
+ALTER TABLE `usv_user_ratings`
+  ADD PRIMARY KEY (`usv_id`),
+  ADD KEY `usr_id` (`usr_id`),
+  ADD KEY `loc_id` (`loc_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -634,7 +780,7 @@ ALTER TABLE `cou_county_list`
 -- AUTO_INCREMENT for table `loc_locatii`
 --
 ALTER TABLE `loc_locatii`
-  MODIFY `loc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `loc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `ors_orase`
 --
@@ -644,12 +790,27 @@ ALTER TABLE `ors_orase`
 -- AUTO_INCREMENT for table `prg_program`
 --
 ALTER TABLE `prg_program`
-  MODIFY `prg_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `prg_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+--
+-- AUTO_INCREMENT for table `rat_rating`
+--
+ALTER TABLE `rat_rating`
+  MODIFY `rat_id` bigint(20) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `rev_reviews`
+--
+ALTER TABLE `rev_reviews`
+  MODIFY `rev_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `usr_users`
 --
 ALTER TABLE `usr_users`
   MODIFY `usr_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `usv_user_ratings`
+--
+ALTER TABLE `usv_user_ratings`
+  MODIFY `usv_id` bigint(20) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

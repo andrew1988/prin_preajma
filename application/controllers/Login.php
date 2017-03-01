@@ -9,7 +9,7 @@ class Login extends MY_Controller {
                 $password = $this->input->post('password','Parola','');
                 
                 $userInfo = ['usr_email'=>$email,'usr_password'=>$password];
-                $checkUser = $this->userModel->userLogin($userInfo);
+                $checkUser = $this->UserModel->userLogin($userInfo);
                 //print("<pre>"); print_r($checkUser); print("</pre>");//debug
                
                //print("<pre>"); print_r($this->session->all_userdata()); print("</pre>");//debug

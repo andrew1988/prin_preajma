@@ -5,7 +5,7 @@
  * categorie in parte
  */
 
-class listingCategoriiModel extends CI_Model {
+class ListingCategoriiModel extends CI_Model {
     /*
      * Functie care se ocupa de afisarea pe categorie.
      */
@@ -23,5 +23,4 @@ class listingCategoriiModel extends CI_Model {
         $query = $this->db->where('cat_id',$cat_id)->count_all_results('loc_locatii');
         return $query;
     }
-
 }

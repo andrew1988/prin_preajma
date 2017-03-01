@@ -8,9 +8,9 @@ class MY_Controller extends CI_Controller{
     
  function __construct(){
         parent::__construct();
-        $this->load->model("generalSelectors");
-        $this->load->model("categoriiModel");
-        $this->generalCountyList = $this->generalSelectors->getCountyList();
+        $this->load->model("GeneralSelectors");
+        $this->load->model("CategoriiModel");
+        $this->generalCountyList = $this->GeneralSelectors->getCountyList();
         $this->checkLog();
         $this->generalViews();
         $this->listCategorii = $this->listaCategorii();
@@ -37,18 +37,22 @@ class MY_Controller extends CI_Controller{
      */
     public function generalViews(){
         if($this->isLoggedFlag == 1){//daca logat
-            $this->generalViewsList['header'] = 'loggedViews/inc/header'; //headerul cu userul atunci cand este logat
-            $this->generalViewsList['locatie'] = 'loggedViews/locatie';
+            $this->generalViewsList['header']   = 'loggedViews/inc/header'; //headerul cu userul atunci cand este logat
+            $this->generalViewsList['locatie']  = 'loggedViews/locatie';
+            $this->generalViewsList['comments'] = 'loggedViews/inc/comments.php';
+            $this->generalViewsList['ratings']  = 'loggedViews/inc/rating.php';
             return $this->generalViewsList;
         }
         else{//daca nu logat
-            $this->generalViewsList['header'] = 'inc/header';
-            $this->generalViewsList['locatie'] = 'locatie';
+            $this->generalViewsList['header']   = 'inc/header';
+            $this->generalViewsList['locatie']  = 'locatie';
+            $this->generalViewsList['comments'] = 'inc/comments.php';
+            $this->generalViewsList['ratings']  = 'inc/rating.php';
             return $this->generalViewsList;
         }
                 
     }
     private function listaCategorii(){
-       return $this->categoriiModel->selectCategorii();
+       return $this->CategoriiModel->selectCategorii();
     }
 }

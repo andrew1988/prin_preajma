@@ -5,7 +5,7 @@ class Ajax_controller extends MY_Controller {
         
 	public function index(){
               $cou_county = json_decode($this->input->post('cou_county'));
-              $cities = $this->generalSelectors->getCityList($cou_county);
+              $cities = $this->GeneralSelectors->getCityList($cou_county);
               $encoded = json_encode($cities);
               print_r($encoded);
 	}
@@ -17,7 +17,7 @@ class Ajax_controller extends MY_Controller {
          */
         public function getCategoryType(){
             $categoryId = $this->input->post('cat_id');
-            $getType = $this->categoriiModel->getCatTypeModel($categoryId);
+            $getType = $this->CategoriiModel->getCatTypeModel($categoryId);
             print_r(json_encode($getType));
         }
 }

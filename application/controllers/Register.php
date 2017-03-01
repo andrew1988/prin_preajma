@@ -22,7 +22,7 @@ class Register extends MY_Controller {
                     
                     
                     $data = ['usr_username'=>$user,'usr_email'=>$email,'usr_password'=>$pass,'usr_persoana_juridica'=>$persj];
-                    $registration = $this->userModel->UserRegistration($data);
+                    $registration = $this->UserModel->UserRegistration($data);
 
                     if($registration == 0){
                         $data = ['successFlag'=>0,'message'=>'Acest utilizator exista deja'];

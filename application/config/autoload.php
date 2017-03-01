@@ -90,7 +90,7 @@ $autoload['drivers'] = array();
   |
   |	$autoload['helper'] = array('url', 'file');
  */
-$autoload['helper'] = array('url', 'form');
+$autoload['helper'] = array('url', 'form','date');
 
 /*
   | -------------------------------------------------------------------
@@ -133,12 +133,14 @@ $autoload['language'] = array();
   |
   |	$autoload['model'] = array('first_model' => 'first');
  */
-$autoload['model'] = array('generalSelectors',
-    'userModel',
-    'admin_usersModel',
-    'admin_categoriiModel',
+$autoload['model'] = array('GeneralSelectors',
+    'UserModel',
+    'Admin_usersModel',
+    'Admin_categoriiModel',
     'LocationsModel',
-    'categoriiModel',
-    'listingCategoriiModel',
-    'homeModel'
+    'CategoriiModel',
+    'ListingCategoriiModel',
+    'HomeModel',
+    'ProgramModel',
+    'LocationDetailsModel'
     );
