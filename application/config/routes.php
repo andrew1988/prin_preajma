@@ -59,15 +59,13 @@ $route['details/(:any)/(:num)/(:num)'] = 'Location_details/index/$1/$1/$1/';
 $route['ratingManagement/(:any)/(:num)'] = 'Location_details/setRating/$1/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-
 //=====================================admin routes=============================
-
 $route['admin_home']  = 'admin_home';
 $route['admin_users'] = 'admin_users';
 $route['admin_edit_user/(:num)'] = 'admin_users/admin_editUser/$1';
 $route['admin_categorii']        = 'admin_categorii';
 $route['admin_edit_categorii/(:num)'] = 'admin_categorii/admin_editCategorii/$1';
-
+$route['admin_locations/(:num)'] = 'Admin_locatii/index/$1';
 //====================================ajax routes===============================
 
 $route['ajax_controller'] = 'ajax_controller/index';
