@@ -15,15 +15,12 @@ function selectForm(selectedLocation) {
                     $("#serviceFields").show();
                     $("#locationFields").hide();
                 }
-
-                //alert(value.cat_type);
             });
         },
         error: function (response) {
             console.log("there's an error" + response.responseText);
         }
     });
-
 }
 
 /*

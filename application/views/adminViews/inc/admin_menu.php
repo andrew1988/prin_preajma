@@ -3,7 +3,7 @@
 <div class="search-home">
     <div class="container">
         <a href="<?php echo base_url("admin_users"); ?>" style="color:red;">Administreaza utilizatori</a> | <a href="<?php echo base_url("admin_categorii"); ?>" style="color:red;">Administreaza categorii</a> |
-        <a href="<?php echo base_url("admin_locations/0"); ?>" style="color:red;">Administreaza localitati</a>
+        <a href="<?php echo base_url("admin_locations/0"); ?>" style="color:red;">Administreaza locatii</a>
     </div>
 </div>
 <div class="button_cat_home">
