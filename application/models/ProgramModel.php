@@ -22,4 +22,22 @@ class ProgramModel extends CI_Model{
                              ->get_where('prg_program',array('loc_id'=>$loc_id));
         return $getHours->result_array();
     }
+    
+    public function checkProgramExistance($loc_id){
+        $existaProgram = $this->db->where('loc_id',$loc_id)
+                                  ->count_all_results('prg_program');
+        return $existaProgram;
+    }
+    
+    public function deleteProgram($loc_id){
+        $this->db->where('loc_id',$loc_id);
+        $this->db->delete('prg_program');
+    }
+    
+    public function updateProgram($loc_id){
+        //echo $loc_id;
+        $getProgramList = $this->db->get_where('prg_program',array('loc_id'=>$loc_id));
+        $programArray = $getProgramList->result_array();
+        print("<pre>"); print_r($programArray); print("</pre>"); die('die');
+    }
 }

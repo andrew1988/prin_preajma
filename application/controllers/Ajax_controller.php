@@ -1,5 +1,5 @@
 <?php
-/*defined('BASEPATH') OR exit('No direct script access allowed');*/
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Ajax_controller extends MY_Controller {
         
@@ -19,5 +19,15 @@ class Ajax_controller extends MY_Controller {
             $categoryId = $this->input->post('cat_id');
             $getType = $this->CategoriiModel->getCatTypeModel($categoryId);
             print_r(json_encode($getType));
+        }
+        public function getFormSection(){
+            $form_type = json_decode($this->input->post('cou_county'));
+            if($form_type == 0){
+               $this->load->view('adminViews/admin_simple_prg_form'); 
+            }elseif($form_type == 1){
+                $this->load->view('adminViews/admin_complex_prg_form');
+            }elseif($form_type == 2){
+                
+            }
         }
 }

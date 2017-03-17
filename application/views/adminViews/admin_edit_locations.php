@@ -10,6 +10,14 @@
                     <input type="hidden" name="loc_id" value="<?php echo $loc_id ?>">
                     <table cellpadding="0" cellspacing="0" border="0" align="center" width='100%'>
                         <tr>
+                            <td>Categorie</td>
+                            <td><select name="selectCategory" id="selectCatSelect" class="form-control" onchange="selectForm(this.value)">
+                                    <?php foreach ($this->listCategorii as $categorie_select) { ?>
+                                        <option value="<?php echo $categorie_select['cat_id']; ?>" <?php echo ($categorie_select['cat_id'] == $cat_id ? 'selected="yes"' : '') ?>><?php echo $categorie_select['cat_nume']; ?></option>
+                                    <?php } ?>
+                                </select></td>
+                        </tr>
+                        <tr>
                             <td>Nume Locatie</td>
                             <td><input type="text" class="form-control" name="loc_pseudonim" value="<?php echo $loc_pseudonim ?>"></td>
                         </tr>
@@ -58,11 +66,53 @@
                         </tr>
                         <tr>
                             <td>Tip Program</td>
-                            <td><select name="loc_prg_type" class="form-control">
-                                    <option value="0" <?php echo ($cat_type == 0 ? 'selected="yes"' : '') ?>>Pe saptamana</option>
-                                    <option value="1" <?php echo ($cat_type == 1 ? 'selected="yes"' : '') ?>>Pe zi</option>
-                                    <option value="2" <?php echo ($cat_type == 2 ? 'selected="yes"' : '') ?>>Non Stop</option>
-                                </select></td>
+                        <input type="radio" name="tabPick" value="tab1"> Tab 1
+<input type="radio" name="tabPick" value="tab2"> Tab 2
+<div id="tabs">
+<div id="tab1">tab 1</div>
+<div id="tab2">tab 2</div>
+</div>
+
+                        <!-- 
+                         <td><div id="locationFields">
+                                 <div id="tabs">
+                                     <ul>
+                        <!--<li><a href="#tabs-1">Program Simplu</a></li>
+                        <li><a href="#tabs-2">Program Complex</a></li>
+                        <li><a href="#tabs-3">Program Non stop</a></li> 
+                        <li><input type="radio" id="tabs-1" name="tabs" value="0"></li>
+                        <li><input type="radio" name="tabs" value="1"></li>
+                        <li><input type="radio" name="tabs" value="2"></li>
+                    </ul>
+                    <div id="tabs-1"> 
+                        <input type="hidden" name="prg_type" value="0">
+                        <p>L-V:</p>
+                        <div class="row">
+                            <div class="col-md-6"><input class="form-control" type="text" name="lv_start" value="<?php echo $program['Luni']['deschide_la'] ?>" placeholder="Program deschidere"></div>
+                            <div class="col-md-6"><input class="form-control" type="text" name="lv_end" value="<?php echo $program['Vineri']['inchide_la'] ?>" placeholder="Program inchidere"></div>
+                        </div>
+                        <p>S-D:</p>
+                        <div class="row">
+                            <div class="col-md-6"><input class="form-control" type="text" name="sd_start" value="<?php echo $program['Sambata']['deschide_la'] ?>" placeholder="Program deschidere"></div>
+                            <div class="col-md-6"><input class="form-control" type="text" name="sd_end" value="<?php echo $program['Duminica']['deschide_la'] ?>" placeholder="Program inchidere"></div>
+                        </div>
+                    </div>
+                    <div id="tabs-2">
+                         <input type="hidden" name="prg_type" value="1">
+                        <?php foreach ($program as $key => $prg) { ?>
+                                <p><?php echo $key; ?>:</p>
+                                <div class="row">
+                                    <div class="col-md-6"><input class="form-control" type="text" name="<?php echo lcfirst($key); ?>_start" placeholder="Program deschidere" value = <?php echo $prg['deschide_la'] ?>></div>
+                                    <div class="col-md-6"><input class="form-control" type="text" name="<?php echo lcfirst($key); ?>_end" placeholder="Program inchidere" value = <?php echo $prg['inchide_la'] ?> ></div>
+                                </div>
+                        <?php } ?>
+                    </div>
+                    <div id="tabs-3">
+                        <input type="hidden" name="non_stop" value="1">
+                        Programul non stop nu are setari de program.
+                    </div>
+                </div>
+            </div></td> -->
                         </tr>
                         <tr>
                             <td></td>

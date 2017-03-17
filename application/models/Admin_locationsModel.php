@@ -3,7 +3,7 @@
 class Admin_locationsModel extends CI_Model {
     
     public function getLocations($limit,$offset){
-        $query = $this->db->select('loc_locatii.loc_id,loc_locatii.loc_pseudonim,usr_users.usr_username,usr_users.usr_id','left')
+        $query = $this->db->select('loc_locatii.loc_id,loc_locatii.loc_pseudonim,loc_locatii.loc_prg_type,usr_users.usr_username,usr_users.usr_id','left')
                  ->join('usr_users','loc_locatii.usr_id = usr_users.usr_id')
                  ->get('loc_locatii',$limit,$offset);
         return $query->result_array();

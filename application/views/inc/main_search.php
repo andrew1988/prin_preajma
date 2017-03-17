@@ -7,7 +7,7 @@
                 <input class="form-control" type="text" name="name" placeholder="Cauta..."> 
             </div>
             <div class="col-md-2" >
-                <select class="judet" id="judet" name="judet">
+                <select class="judet form-control" id="judet" name="judet">
                      <option value="0">Alege Judetul</option>
                     <?php foreach ($this->generalCountyList as $judete) { ?>
                         <option value="<?php echo $judete['county_id']; ?>"><?php echo $judete['long']; ?></option>
@@ -20,7 +20,7 @@
                 </select>
             </div>
             <div class="col-md-4">
-                <select class="program_loc" name="lv_start">
+                <select class="program_loc form-control" name="lv_start">
                     <option>01:00</option>
                     <option>02:00</option>
                     <option>03:00</option>
@@ -46,7 +46,7 @@
                     <option>23:00</option>
                     <option>24:00</option>
                 </select>
-                <select class="program_loc" name="lv_end">
+                <select class="program_loc form-control" name="lv_end">
                     <option>01:00</option>
                     <option>02:00</option>
                     <option>03:00</option>

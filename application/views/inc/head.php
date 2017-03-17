@@ -41,11 +41,8 @@
                         }
                     });
                 });
-
-                $(function () {
-                    $("#tabs").tabs();
-                });
-
+                
+                
             });
             function populateLocationnCities(county) {
 

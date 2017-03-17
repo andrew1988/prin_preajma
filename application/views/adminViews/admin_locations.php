@@ -16,7 +16,7 @@
                     <tr>
                         <td><?php echo $locatie['loc_pseudonim'] ?></td>
                         <td><?php echo $locatie['usr_username'] ?></td>
-                        <td><a href="<?php echo base_url('admin_edit_location/'.$locatie['loc_id'].'') ?>">Edit</a>
+                        <td><a href="<?php echo base_url('admin_edit_location/'.$locatie['loc_id']) ?>">Edit</a>
                             <a href='#'>Delete</a>
                         </td>
                     </tr>

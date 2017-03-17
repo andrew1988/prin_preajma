@@ -41,11 +41,13 @@ class MY_Controller extends CI_Controller{
             $this->generalViewsList['locatie']  = 'loggedViews/locatie';
             $this->generalViewsList['comments'] = 'loggedViews/inc/comments.php';
             $this->generalViewsList['ratings']  = 'loggedViews/inc/rating.php';
+            $this->generalViewsList['editUser'] = 'loggedViews/user_details';
             return $this->generalViewsList;
         }
         else{//daca nu logat
             $this->generalViewsList['header']   = 'inc/header';
             $this->generalViewsList['locatie']  = 'locatie';
+            $this->generalViewsList['editUser'] = 'user_details';
             $this->generalViewsList['comments'] = 'inc/comments.php';
             $this->generalViewsList['ratings']  = 'inc/rating.php';
             return $this->generalViewsList;

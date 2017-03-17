@@ -18,7 +18,10 @@
                         <a class="btn btn-primary add pull-right" href="<?php echo base_url('locatie') ?>">Adauga locatie</a>
                         <ul class="nav nav-pills pull-right" style="margin-right: 10px;">
 
-                            <p style="margin-top: 10px;">Salut <a href="profile.php?id="><?php echo $this->session->userdata('usr_username') ?></a>  <?php echo ($this->session->userdata('usr_rank')== 1 ? '| <a href="'.base_url('admin_home').'">Admin</a>':'') ?>  | <a href="<?php echo base_url("/logout") ?>">Logout</a> </p>
+                            <p style="margin-top: 10px;">Salut <a href="profile.php?id="><?php echo $this->session->userdata('usr_username') ?></a> | 
+                                <a href="<?php echo base_url('edit_profile'); ?>">Editeaza Profil</a> 
+                                <?php echo ($this->session->userdata('usr_rank')== 1 ? '| <a href="'.base_url('admin_home').'">Admin</a>':'') ?>  
+                                | <a href="<?php echo base_url("/logout") ?>">Logout</a> </p>
                            
                             <!--<li class="btn btn-primary add"></li>-->
                         </ul>

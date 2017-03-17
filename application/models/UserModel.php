@@ -8,12 +8,10 @@ class UserModel extends CI_Model{
         foreach($query->result_array() as $row){
             
             if(($row['usr_username'] == $usr_username)||($row['usr_email'] == $usr_email)){
-                
                 $flag = 1;
                 break;//opreste daca gaseste n-are rost sa mai continue
             }
             else{
-               
                 $flag = 0;
             }
         }
@@ -69,6 +67,21 @@ class UserModel extends CI_Model{
             return $data;
         }    
     }
-
+    
+    public function updateUserData($data){
+          $user_id = $this->session->userdata('usr_id');
+          if(empty($data['usr_password'])){
+              unset($data['usr_password']);
+          }
+          $this->db->set($data);
+          $this->db->where('usr_id',$user_id);
+          $this->db->update('usr_users');
+    }
+    
+    public function getUserInfo(){
+        $getData = $this->db->select('usr_nume,usr_prenume')
+                            ->get_where('usr_users',array('usr_id'=>$this->session->userdata('usr_id')));
+        return $getData->result_array();
+    }
     
 }

@@ -58,6 +58,8 @@ $route['logout'] = 'logout';
 $route['categorie/(:any)/(:num)/(:any)'] = 'locationListingsCategorii/index/$1/$1/$1';
 $route['details/(:any)/(:num)/(:num)'] = 'Location_details/index/$1/$1/$1/';
 $route['ratingManagement/(:any)/(:num)'] = 'Location_details/setRating/$1/$1';
+$route['edit_profile'] = 'Edit_user';
+$route['update_profile'] =  'Edit_user/updateProfile';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 //=====================================admin routes=============================
