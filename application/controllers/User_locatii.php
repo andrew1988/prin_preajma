@@ -2,28 +2,29 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_locatii extends MY_Controller {
+class User_locatii extends MY_Controller {
 
-    public $days = array('luni', 'marti', 'miercuri', 'joi', 'vineri', 'sambata', 'duminica');
+    //public $days = array('luni', 'marti', 'miercuri', 'joi', 'vineri', 'sambata', 'duminica');
 
     public function index() {
-        $config['base_url'] = base_url("admin_locations");
+        
+        $config['base_url'] = base_url("view_locations");
         $config['first_link'] = 'Prima';
         $config['last_link'] = 'Ultima';
         $config['per_page'] = 10;
         $config['num_links'] = 10;
         $config['first_url'] = '0';
         $config['uri_segment'] = 2;
-        $config['total_rows'] = $this->Admin_locationsModel->getLocationsNumber();
-        $locatii = $this->Admin_locationsModel->getLocations($config['per_page'], $this->uri->segment(2));
+        $config['total_rows'] = $this->LocationsModel->getLocationsNumber();
+        //echo $this->LocationsModel->getLocationsNumber();
+        $locatii = $this->LocationsModel->getLocationByUser($config['per_page'], $this->uri->segment(2));
         $this->pagination->initialize($config);
         $data['locatii'] = $locatii;
         $data['link'] = $this->pagination->create_links();
-        //print("<pre>"); print_r($data); print("</pre>"); 
         $this->load->view('inc/head');
-        $this->load->view('loggedViews/inc/header'); //apeleaza proprietatea din MY_controller unde stabileste ce header incarca.
-        $this->load->view('adminViews/inc/admin_menu');
-        $this->load->view('adminViews/admin_locations', $data); //asta e singurrul care se schmiba in functie de controllerul accesat.
+        $this->load->view($this->generalViewsList['header']);
+        $this->load->view('inc/main_search');
+        $this->load->view($this->generalViewsList['user_locations'], $data); //asta e singurrul care se schmiba in functie de controllerul accesat.
         $this->load->view('inc/footer.php');
     }
 

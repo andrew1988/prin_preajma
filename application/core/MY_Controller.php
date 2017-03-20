@@ -42,6 +42,7 @@ class MY_Controller extends CI_Controller{
             $this->generalViewsList['comments'] = 'loggedViews/inc/comments.php';
             $this->generalViewsList['ratings']  = 'loggedViews/inc/rating.php';
             $this->generalViewsList['editUser'] = 'loggedViews/user_details';
+            $this->generalViewsList['user_locations'] = 'loggedViews/user_locations';
             return $this->generalViewsList;
         }
         else{//daca nu logat
@@ -50,6 +51,7 @@ class MY_Controller extends CI_Controller{
             $this->generalViewsList['editUser'] = 'user_details';
             $this->generalViewsList['comments'] = 'inc/comments.php';
             $this->generalViewsList['ratings']  = 'inc/rating.php';
+            $this->generalViewsList['user_locations'] = 'user_locations';
             return $this->generalViewsList;
         }
                 
