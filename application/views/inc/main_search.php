@@ -2,7 +2,7 @@
 <div><img src="<?php echo base_url("assets/images/background.jpg"); ?>" alt="" class="img-responsive"/></div>
 <div class="search-home">
     <div class="container">
-        <form  method="post" action="search.php?go"  id="searchform"> 
+        <form  method="post" action="<?php echo base_url('search')?>"  id="searchform"> 
             <div class="col-md-4">
                 <input class="form-control" type="text" name="name" placeholder="Cauta..."> 
             </div>
