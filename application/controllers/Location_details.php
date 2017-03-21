@@ -60,7 +60,7 @@ class Location_details extends MY_Controller {
             $this->load->model('CommentsModel');
             $this->CommentsModel->addComment($savedData);
             $locatie = $this->uri->segment(2);
-            redirect('/details/' . $locatie . '/' . $loc_id . '', 'refresh');
+            redirect('details/'. $locatie .'/'. $loc_id .'', 'refresh');
         }
     }
 
