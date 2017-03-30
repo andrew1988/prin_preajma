@@ -143,5 +143,6 @@ $autoload['model'] = array('GeneralSelectors',
     'HomeModel',
     'ProgramModel',
     'LocationDetailsModel',
-    'Admin_locationsModel'
+    'Admin_locationsModel',
+    'SearchModel'
     );

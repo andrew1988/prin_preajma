@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class locationListingsCategorii extends MY_Controller {
+class LocationListingsCategorii extends MY_Controller {
 
     public function index() {
         $cat_name = $this->uri->segment(2); //segmentul 2 din link. aici se
