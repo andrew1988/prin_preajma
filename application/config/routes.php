@@ -62,6 +62,8 @@ $route['edit_profile'] = 'Edit_user';
 $route['update_profile'] =  'Edit_user/updateProfile';
 $route['view_locations/(:num)'] = 'User_locatii/index/$1';
 $route['search'] = 'Search_controller';
+$route['contact'] = 'Contact';
+$route['send_message'] = 'Contact/sendMessage'; //ruta pentru trimiterea mesajului.
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 //=====================================admin routes=============================
@@ -73,5 +75,6 @@ $route['admin_edit_categorii/(:num)'] = 'admin_categorii/admin_editCategorii/$1'
 $route['admin_locations/(:num)'] = 'Admin_locatii/index/$1';
 $route['admin_edit_location/(:num)'] = 'Admin_locatii/edit/$1';
 $route['admin_update_location'] = 'Admin_locatii/updateLocation';
+$route['admin_contact'] = 'Admin_contact';
 //====================================ajax routes===============================
 $route['ajax_controller'] = 'ajax_controller/index';

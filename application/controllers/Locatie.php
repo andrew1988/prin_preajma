@@ -105,7 +105,7 @@ class Locatie extends MY_Controller {
                 $programInput[$day] = [
                     'loc_id' => '',
                     'prg_day' => $day,
-                    'prg_day_short'=>substr($day,0,1),
+                    'prg_day_short'=>mb_substr($day,0,1),
                     'prg_open_at' =>  $this->input->post(lcfirst($day).'_start'),
                     'prg_close_at' => $this->input->post(lcfirst($day).'_end'),
                 ];

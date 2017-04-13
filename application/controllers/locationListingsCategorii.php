@@ -29,7 +29,7 @@ class LocationListingsCategorii extends MY_Controller {
             //setare program
             if ($locatie['loc_prg_type'] == 0) {
                 $hours = $this->ProgramModel->getHoursForListing($locatie['loc_id']);
-                $locatie['orar'] = $hours[0]['prg_day_short'] . '-' . $hours[3]['prg_day_short'] . ' ' . $hours[0]['prg_hour'] . '-' . $hours[3]['prg_hour'];
+                $locatie['orar'] = $hours[0]['prg_day_short'] . '-' . $hours[6]['prg_day_short'] . ' ' . $hours[0]['prg_open_at'] . '-' . $hours[6]['prg_close_at'];
             } else {
                 $locatie['orar'] = 'Vezi Orar';
             }
