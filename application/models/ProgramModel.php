@@ -5,8 +5,8 @@ class ProgramModel extends CI_Model{
      * pentru locatiile care au program simplu.
      */
     public function getHoursForListing($loc_id){
-           $getHours1 = "SELECT prg_day_short,prg_hour,prg_open_close_hour_type,loc_id FROM prg_program "
-                       . "WHERE (prg_day_short = 'L' OR prg_day_short = 'V') AND loc_id = '$loc_id'";
+           $getHours1 = "SELECT prg_day,prg_day_short,prg_open_at,prg_close_at FROM prg_program "
+                       . "WHERE loc_id = '$loc_id'";
            $q = $this->db->query($getHours1);
         return $q->result_array(); 
       

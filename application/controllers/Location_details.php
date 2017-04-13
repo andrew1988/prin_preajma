@@ -172,14 +172,11 @@ class Location_details extends MY_Controller {
 
             foreach ($program as $prg) {
 
-                if ((!array_key_exists($prg['prg_day'], $generateProgramArray))) {
                     $generateProgramArray[$prg['prg_day']] = [
                         'ziua' => $prg['prg_day'],
-                        'deschide_la' => $prg['prg_hour'],
+                        'deschide_la' => $prg['prg_open_at'],
+                        'inchide_la'  => $prg['prg_close_at']
                     ];
-                } else {
-                    $generateProgramArray[$prg['prg_day']]['inchide_la'] = $prg['prg_hour'];
-                }
                 //print("<pre>"); print_r($prg); print("</pre>");
             }
             $program['non_stop'] = '0';
