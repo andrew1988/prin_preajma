@@ -75,6 +75,9 @@ $route['admin_edit_categorii/(:num)'] = 'admin_categorii/admin_editCategorii/$1'
 $route['admin_locations/(:num)'] = 'Admin_locatii/index/$1';
 $route['admin_edit_location/(:num)'] = 'Admin_locatii/edit/$1';
 $route['admin_update_location'] = 'Admin_locatii/updateLocation';
-$route['admin_contact'] = 'Admin_contact';
+$route['admin_contact/(:num)'] = 'Admin_contact/index/$1';
+$route['admin_delete_message/(:num)'] = 'Admin_contact/deleteMessage/$1';
+$route['admin_view_message/(:num)'] = 'Admin_contact/readMessages/$1';
+$route['admin_contact_read/(:num)'] = 'Admin_contact/readMessagesList/$1';
 //====================================ajax routes===============================
 $route['ajax_controller'] = 'ajax_controller/index';

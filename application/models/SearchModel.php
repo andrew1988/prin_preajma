@@ -29,6 +29,7 @@ class SearchModel extends CI_Model{
         $rezultate = $this->db->join('cat_categorii','cat_categorii.cat_id = loc_locatii.cat_id')
                 ->get('loc_locatii',$limit,$offset);
         //$array_rez = $rezultate->result_array();
+        //o sa ii trebuiascaa functie speciala pentru numararea tuturor rezultatelor
         $array_rez = ['rezults'=>$rezultate->result_array(),'rows'=>$rezultate->result_id->num_rows];
         return $array_rez;
         

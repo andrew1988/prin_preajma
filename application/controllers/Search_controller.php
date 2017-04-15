@@ -18,14 +18,14 @@ class Search_controller extends MY_Controller {
         //prelucrarea informatiilor apelarea modelelor 
         
         $config['base_url'] = base_url("search");
-        $config['per_page'] = 4;
-        $locatii = $this->SearchModel->getResults($config['per_page'], $this->uri->segment(4),$params);
+        $config['per_page'] = 10;
+        $locatii = $this->SearchModel->getResults($config['per_page'], $this->uri->segment(2),$params);
         $config['total_rows'] = $locatii['rows'];
         $config['first_link'] = 'Prima';
         $config['last_link'] = 'Ultima';
         $config['num_links'] = 10;
         $config['first_url'] = '0';
-        $config['uri_segment'] = 4;
+        $config['uri_segment'] = 2;
  
         $this->pagination->initialize($config);
         $data['rezultate'] = $locatii['rezults'];
